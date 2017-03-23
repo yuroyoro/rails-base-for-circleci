@@ -26,3 +26,14 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update -qq && apt-get install -y yarn
 
+# install Docker client
+
+ENV DOCKER_VER "17.03.0-ce"
+RUN curl -L -o /tmp/docker-$DOCKER_VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$DOCKER_VER.tgz
+RUN tar -xz -C /tmp -f /tmp/docker-$DOCKER_VER.tgz
+RUN mv /tmp/docker/* /usr/bin
+
+
+# Install Docker Compose
+RUN curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
