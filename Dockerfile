@@ -33,7 +33,9 @@ RUN curl -L -o /tmp/docker-$DOCKER_VER.tgz https://get.docker.com/builds/Linux/x
 RUN tar -xz -C /tmp -f /tmp/docker-$DOCKER_VER.tgz
 RUN mv /tmp/docker/* /usr/bin
 
-
 # Install Docker Compose
 RUN curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 RUN chmod +x /usr/local/bin/docker-compose
+
+# install psql command
+RUN apt-get install -y postgresql-client
