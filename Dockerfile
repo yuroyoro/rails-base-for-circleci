@@ -1,4 +1,4 @@
-FROM ruby:2.4.2
+FROM ruby:2.5.0
 ENV LANG C.UTF-8
 
 RUN apt-get update -qq && apt-get install -y build-essential
@@ -14,12 +14,8 @@ RUN apt-get install -y qt5-default libqt5webkit5-dev fonts-ipafont-gothic
 RUN apt-get install -y gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x xvfb
 
 # for a JS runtime
-RUN apt-get install -y nodejs npm
-
-# upgrade node
-RUN npm cache clean && npm install n -g
-RUN n stable && ln -sf /usr/local/bin/node /usr/bin/node
-RUN apt-get purge -y nodejs npm
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get install -y nodejs
 
 # intall yarn
 RUN apt-get install apt-transport-https
