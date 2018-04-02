@@ -9,10 +9,6 @@ RUN apt-get install -y libpq-dev
 # for nokogiri
 RUN apt-get install -y libxml2-dev libxslt1-dev
 
-# for capybara-webkit
-RUN apt-get install -y qt5-default libqt5webkit5-dev fonts-ipafont-gothic
-RUN apt-get install -y gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x xvfb
-
 # for a JS runtime
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
@@ -42,5 +38,6 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 RUN echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 RUN apt-get update -qq && apt-get install -y google-chrome-stable unzip
 RUN cd /tmp && wget -q http://chromedriver.storage.googleapis.com/2.37/chromedriver_linux64.zip && unzip chromedriver_linux64.zip && mv chromedriver /usr/local/bin
+RUN apt-get install -y fonts-ipafont-gothic
 
 ENV XDG_CACHE_HOME /tmp
